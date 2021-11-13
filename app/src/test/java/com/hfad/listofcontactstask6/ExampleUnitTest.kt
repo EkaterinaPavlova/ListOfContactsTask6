@@ -1,4 +1,4 @@
-package com.hfad.listofcontacts
+package com.hfad.listofcontactstask6
 
 import org.junit.Test
 

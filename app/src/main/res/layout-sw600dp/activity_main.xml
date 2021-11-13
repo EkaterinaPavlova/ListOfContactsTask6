@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context="com.hfad.listofcontactstask6.MainActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -22,15 +22,13 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragment_container"
-            android:layout_margin="30dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:name="com.hfad.listofcontacts.ContactsFragment"
+            android:name="com.hfad.listofcontactstask6.ContactsFragment"
             android:layout_weight="1"/>
 
         <FrameLayout
             android:layout_width="0dp"
-            android:layout_margin="35dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
             android:id="@+id/fragment_container_2"/>

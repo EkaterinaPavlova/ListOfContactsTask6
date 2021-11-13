@@ -1,7 +1,7 @@
-package com.hfad.listofcontacts
+package com.hfad.listofcontactstask6
 
 import android.app.Application
-import com.hfad.listofcontacts.model.ContactsService
+import com.hfad.listofcontactstask6.model.ContactsService
 
 class App : Application() {
     val contactsService = ContactsService()

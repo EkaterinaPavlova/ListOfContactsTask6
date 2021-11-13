@@ -4,8 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ContactDetailsFragment">
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_marginTop="10dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"/>
 
     <EditText
         android:layout_width="match_parent"

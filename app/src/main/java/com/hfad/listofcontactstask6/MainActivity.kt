@@ -1,11 +1,11 @@
-package com.hfad.listofcontacts
+package com.hfad.listofcontactstask6
 
 import android.os.Bundle
 import android.widget.FrameLayout
 import androidx.fragment.app.FragmentActivity
-import com.hfad.listofcontacts.databinding.ActivityMainBinding
-import com.hfad.listofcontacts.model.Contacts
-import com.hfad.listofcontacts.model.ContactsService
+import com.hfad.listofcontactstask6.model.Contact
+import com.hfad.listofcontactstask6.model.ContactsService
+import listofcontactstask6.R
 
 class MainActivity : FragmentActivity(), AppContract {
 
@@ -16,7 +16,7 @@ class MainActivity : FragmentActivity(), AppContract {
         if (savedInstanceState == null) {
             supportFragmentManager
                 .beginTransaction()
-                .add(R.id.fragment_container, ContactsFragment())
+                .replace(R.id.fragment_container, ContactsFragment())
                 .commit()
         }
     }
@@ -24,7 +24,7 @@ class MainActivity : FragmentActivity(), AppContract {
     override val contactsService: ContactsService
         get() = (applicationContext as App).contactsService
 
-    override fun launchContactDetail(contact: Contacts) {
+    override fun launchContactDetail(contact: Contact) {
 
         if (findViewById<FrameLayout>(R.id.fragment_container_2) != null) {
             supportFragmentManager
