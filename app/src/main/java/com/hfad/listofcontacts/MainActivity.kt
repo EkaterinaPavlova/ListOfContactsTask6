@@ -1,6 +1,7 @@
 package com.hfad.listofcontacts
 
 import android.os.Bundle
+import android.widget.FrameLayout
 import androidx.fragment.app.FragmentActivity
 import com.hfad.listofcontacts.databinding.ActivityMainBinding
 import com.hfad.listofcontacts.model.Contacts
@@ -12,7 +13,7 @@ class MainActivity : FragmentActivity(), AppContract {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        if(savedInstanceState == null){
+        if (savedInstanceState == null) {
             supportFragmentManager
                 .beginTransaction()
                 .add(R.id.fragment_container, ContactsFragment())
@@ -24,10 +25,19 @@ class MainActivity : FragmentActivity(), AppContract {
         get() = (applicationContext as App).contactsService
 
     override fun launchContactDetail(contact: Contacts) {
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.fragment_container, ContactDetailsFragment.newInstance(contact))
-            .addToBackStack(null)
-            .commit()
+
+        if (findViewById<FrameLayout>(R.id.fragment_container_2) != null) {
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.fragment_container_2, ContactDetailsFragment.newInstance(contact))
+                .commit()
+
+        } else {
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.fragment_container, ContactDetailsFragment.newInstance(contact))
+                .addToBackStack(null)
+                .commit()
+        }
     }
 }
