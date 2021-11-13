@@ -19,6 +19,11 @@ class ContactsFragment : Fragment() {
     ): View? {
 
         binding = FragmentContactsBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         val contacts = contract().contactsService.contacts
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, contacts)
@@ -27,7 +32,5 @@ class ContactsFragment : Fragment() {
             val currentItem = adapter.getItem(position)!!
             contract().launchContactDetail(currentItem)
         }
-
-        return binding.root
     }
 }
