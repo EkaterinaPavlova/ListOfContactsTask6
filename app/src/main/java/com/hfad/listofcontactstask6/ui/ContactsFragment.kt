@@ -1,18 +1,13 @@
 package com.hfad.listofcontactstask6.ui
 
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.hfad.listofcontactstask6.App
-import com.hfad.listofcontactstask6.ContactsAdapter
 import com.hfad.listofcontactstask6.contract
 import com.hfad.listofcontactstask6.model.Contact
-import listofcontactstask6.R
 import listofcontactstask6.databinding.FragmentContactsBinding
 
 class ContactsFragment : Fragment(), ContactsAdapter.Listener {

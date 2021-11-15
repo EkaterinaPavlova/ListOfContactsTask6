@@ -1,11 +1,13 @@
-package com.hfad.listofcontactstask6
+package com.hfad.listofcontactstask6.ui
 
+import android.app.AlertDialog
+import android.app.Application
+import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.hfad.listofcontactstask6.model.Contact
-import com.hfad.listofcontactstask6.ui.DiffUtilContacts
 import listofcontactstask6.databinding.ItemContactBinding
 
 class ContactsAdapter(
@@ -36,7 +38,14 @@ class ContactsAdapter(
         }
 
         holder.itemView.setOnLongClickListener {
-            clickListener.deleteContact(contact)
+
+            val builder = AlertDialog.Builder(holder.itemView.context)
+            builder.setMessage("Delete this contact?")
+            builder.setPositiveButton("YES") { _: DialogInterface, _: Int ->
+                clickListener.deleteContact(contact)
+            }
+            builder.setNegativeButton("CANCEL") { _: DialogInterface, _: Int -> }
+            builder.show()
             return@setOnLongClickListener true
         }
     }
@@ -49,7 +58,6 @@ class ContactsAdapter(
         oldContactsList = newContactsList
         diffResults.dispatchUpdatesTo(this)
     }
-
 
     class ContactsViewHolder(val binding: ItemContactBinding) :
         RecyclerView.ViewHolder(binding.root)
