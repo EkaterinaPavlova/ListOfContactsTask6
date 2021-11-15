@@ -9,7 +9,4 @@ data class Contact(
     var number: String,
     var photo: String
 ) : Serializable {
-    override fun toString(): String {
-        return firstName
-    }
 }

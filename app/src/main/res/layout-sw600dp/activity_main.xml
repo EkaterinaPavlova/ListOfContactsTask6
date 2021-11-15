@@ -24,7 +24,7 @@
             android:id="@+id/fragment_container"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:name="com.hfad.listofcontactstask6.ContactsFragment"
+            android:name="com.hfad.listofcontactstask6.ui.ContactsFragment"
             android:layout_weight="1"/>
 
         <FrameLayout

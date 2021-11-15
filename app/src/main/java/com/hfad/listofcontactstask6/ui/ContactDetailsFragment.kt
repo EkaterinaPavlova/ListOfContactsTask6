@@ -1,9 +1,7 @@
-package com.hfad.listofcontactstask6
+package com.hfad.listofcontactstask6.ui
 
 import android.content.Context
-import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,7 +28,7 @@ class ContactDetailsFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         binding = FragmentContactDetailsBinding.inflate(inflater, container, false)
         return binding.root
@@ -73,7 +71,7 @@ class ContactDetailsFragment : Fragment() {
     companion object{
         private const val ARG_CONTACT = "ARG_CONTACT"
 
-        fun newInstance(contact: Contact) : ContactDetailsFragment{
+        fun newInstance(contact: Contact) : ContactDetailsFragment {
             val fragment = ContactDetailsFragment()
             fragment.arguments = bundleOf(ARG_CONTACT to contact)
             return fragment

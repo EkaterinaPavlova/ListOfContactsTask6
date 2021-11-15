@@ -1,26 +1,31 @@
-package com.hfad.listofcontactstask6
+package com.hfad.listofcontactstask6.ui
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.LinearLayout
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.hfad.listofcontactstask6.App
+import com.hfad.listofcontactstask6.ContactsAdapter
+import com.hfad.listofcontactstask6.contract
 import com.hfad.listofcontactstask6.model.Contact
+import listofcontactstask6.R
 import listofcontactstask6.databinding.FragmentContactsBinding
 
-class ContactsFragment : Fragment(), ContactsAdapter.SelectContactListener {
+class ContactsFragment : Fragment(), ContactsAdapter.Listener {
 
     private lateinit var binding: FragmentContactsBinding
     private lateinit var adapter: ContactsAdapter
+    private var listOfContacts = mutableListOf<Contact>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         binding = FragmentContactsBinding.inflate(inflater, container, false)
         return binding.root
@@ -29,16 +34,21 @@ class ContactsFragment : Fragment(), ContactsAdapter.SelectContactListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val contacts = contract().contactsService.getContacts()
+        listOfContacts = contract().contactsService.getContacts()
 
-        adapter = ContactsAdapter(contacts, this)
+        adapter = ContactsAdapter(listOfContacts, this)
         val layoutManager = LinearLayoutManager(context)
         binding.recyclerView.layoutManager = layoutManager
         binding.recyclerView.adapter = adapter
-
     }
 
     override fun selectContact(contact: Contact) {
         contract().launchContactDetail(contact)
+    }
+
+    override fun deleteContact(contact: Contact) {
+        contract().contactsService.deleteContact(contact)
+        listOfContacts = contract().contactsService.getContacts()
+        adapter.setData(listOfContacts)
     }
 }
