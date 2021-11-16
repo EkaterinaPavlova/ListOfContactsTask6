@@ -4,23 +4,23 @@ import com.github.javafaker.Faker
 
 class ContactsService {
 
-    private var contacts = mutableListOf<Contact>()
+    private var contacts = ArrayList<Contact>()
 
     init {
         val faker = Faker.instance()
 
-        contacts = (1..10).map{
+        contacts = (1..100).map{
             Contact(
-                id = it.toLong(),
+                id = it,
                 firstName = faker.name().firstName(),
                 lastName = faker.name().lastName(),
                 number = faker.phoneNumber().phoneNumber(),
                 photo = "https://picsum.photos/200/300"
             )
-        }.toMutableList()
+        } as ArrayList<Contact>
     }
 
-    fun getContacts() : MutableList<Contact> {
+    fun getContacts() : ArrayList<Contact> {
         return contacts
     }
 

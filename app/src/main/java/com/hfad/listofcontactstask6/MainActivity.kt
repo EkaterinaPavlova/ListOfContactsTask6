@@ -2,14 +2,15 @@ package com.hfad.listofcontactstask6
 
 import android.os.Bundle
 import android.widget.FrameLayout
-import androidx.fragment.app.FragmentActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.hfad.listofcontactstask6.model.Contact
 import com.hfad.listofcontactstask6.model.ContactsService
 import com.hfad.listofcontactstask6.ui.ContactDetailsFragment
 import com.hfad.listofcontactstask6.ui.ContactsFragment
 import listofcontactstask6.R
 
-class MainActivity : FragmentActivity(), AppContract {
+
+class MainActivity : AppCompatActivity(), AppContract {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
