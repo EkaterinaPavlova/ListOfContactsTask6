@@ -3,6 +3,7 @@ package com.hfad.listofcontactstask6.ui
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hfad.listofcontactstask6.contract
@@ -37,10 +38,21 @@ class ContactsFragment : Fragment(), ContactsAdapter.Listener {
         listSearch.clear()
         listSearch.addAll(listOfContacts)
 
-        adapter = ContactsAdapter( this)
+        adapter = ContactsAdapter(this)
         adapter.submitList(listSearch)
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
         binding.recyclerView.adapter = adapter
+
+        val heightInPixels = resources.getDimensionPixelSize(R.dimen.list_item_height)
+        context?.let {
+            binding.recyclerView
+                .addItemDecoration(
+                    ContactItemDecoration(
+                        ContextCompat.getColor(it, R.color.light_purple),
+                        heightInPixels
+                    )
+                )
+        }
 
         setHasOptionsMenu(true)
 
@@ -69,11 +81,10 @@ class ContactsFragment : Fragment(), ContactsAdapter.Listener {
             override fun onQueryTextSubmit(query: String): Boolean {
 
                 listSearch.clear()
-                val searchQuery = query.toLowerCase(Locale.getDefault())
+                val searchQuery = query.lowercase()
                 if (query.isNotEmpty()) {
                     listOfContacts.forEach {
-                        if (it.firstName.toLowerCase(Locale.getDefault()).contains(searchQuery) ||
-                            it.lastName.toLowerCase(Locale.getDefault()).contains(query)) {
+                        if (it.toString().lowercase().contains(searchQuery)) {
                             listSearch.add(it)
                         }
                     }
@@ -91,12 +102,10 @@ class ContactsFragment : Fragment(), ContactsAdapter.Listener {
             override fun onQueryTextChange(newText: String): Boolean {
 
                 listSearch.clear()
-                val searchText = newText.toLowerCase(Locale.getDefault())
-                if(searchText.isNotEmpty()){
+                val searchText = newText.lowercase()
+                if (searchText.isNotEmpty()) {
                     listOfContacts.forEach {
-                        if (it.firstName.toLowerCase(Locale.getDefault()).contains(searchText) ||
-                            it.lastName.toLowerCase(Locale.getDefault()).contains(searchText)) {
-
+                        if (it.toString().lowercase().contains(searchText)) {
                             listSearch.add(it)
                         }
                     }
